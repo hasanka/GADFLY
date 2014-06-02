@@ -15,26 +15,22 @@
 
 	<div id="divMainPageOuter ">
 		<div class="topBar">
-			<span class="codeCarrier" id="connectedCarrier"><s:property
-					value="#session['carrierCode']" /></span>
+			<span class="codeCarrier" id="connectedCarrier"><s:property value="#session['carrierCode']" /></span>
 			<ul id="ulMenuID" class="topMenu sf-menu">
-				
 					<li><a href="#">Admin</a>
 						<ul style="margin-left: 0px; margin-top: 0px;">
-								<li><a href="javascript:UI_HomePage.menuClick('user!showView.action','User Management','1');">User Management</a></li>	
-								<li><a href="javascript:UI_HomePage.menuClick('role!showView.action','Roles Management','2');">Role Management</a></li>
-								<li><a href="javascript:UI_HomePage.menuClick('stationManagement!showView.action','Station Management','3');">Station Management</a></li>
+								<li><a href="javascript:UI_HomePage.menuClick('../user/showView','User Management','1');">User Management</a></li>	
+								<!-- <li><a href="javascript:UI_HomePage.menuClick('role!showView.action','Roles Management','2');">Role Management</a></li>
+								<li><a href="javascript:UI_HomePage.menuClick('stationManagement!showView.action','Station Management','3');">Station Management</a></li> -->
 						</ul>
 					</li>
 			</ul>
 		</div>
 		<div id="divMainPageTitileBar" class="graybar">
-
 			<div class="logo-app"></div>
 			<div class="bar-app">
 				<div id="divLoggedInUser" class="fntBold topbarItems">
-					<label id="lblLoggedInUser">Welcome <s:property
-							value="hasanka" /></label> | <a
+					<label id="lblLoggedInUser">Welcome <s:property value="hasanka" /></label> | <a
 						href="logout" class="logout"
 						id="lblLogout">Logout</a>
 				</div>
@@ -55,7 +51,7 @@
 			<div style="clear: both; height: 0px;"></div>
 		</div>
 		<div class="footer">
-			<label>Copyright ï¿½ 2013 Digital Gravity, All Rights Reserved.</label>
+			<label>Copyright © 2014 Digital Gravity, All Rights Reserved.</label>
 		</div>
 	</div>
 

@@ -12,5 +12,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="/webAdmin"/>
+	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

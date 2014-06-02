@@ -66,8 +66,8 @@ function UI_HomePage(){
 	// above
 	addTab = function(url, strTitle, pageID) {
 		var pageName = strTitle.replace(/ /g, '').toUpperCase();
-		var imgStr = '<img id = closeBtn_' + pageID + ' class="closeBtnGlobal" src="themes/images/MAX150.gif" />';
-		var divStr = '<div id="divMainPageTabbed_' + pageID + '" class="ui-tabs-panel ui-widget-content ui-corner-bottom" ><iframe id="iframeMainPageContent' + pageID + '" src="blank.html" frameborder="0" marginheight="0" marginwidth="0" style= "width:100%" name="'
+		var imgStr = '<img id = closeBtn_' + pageID + ' class="closeBtnGlobal" src="../../themes/images/MAX150.gif" />';
+		var divStr = '<div id="divMainPageTabbed_' + pageID + '" class="ui-tabs-panel ui-widget-content ui-corner-bottom" ><iframe id="iframeMainPageContent' + pageID + '" src="../../blank.html" frameborder="0" marginheight="0" marginwidth="0" style= "width:100%" name="'
 				+ pageName + '"></iframe></div>';
 		var tabbed = '<li><a href="#{href}"><span>#{label}&nbsp;</span>'+ imgStr +' </a></li>';
 		var loadingIFrameID = "iframeMainPageContent" + pageID;
