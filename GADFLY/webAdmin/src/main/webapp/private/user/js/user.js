@@ -3,6 +3,7 @@
  ******************************************************************************/
 
 function UI_ManageUser() {
+	this.isEdit = null;
 	this.gridHTML = $("<table id='userGrid'></table>");
 	this.gridPagerHTML = $("<div id='userGridPager'></div>");
 	this.userGrid = null;
@@ -18,6 +19,8 @@ function UI_ManageUser() {
 		$("#btnSearch").on("click", searchBtnClick);
 		$("#btnAddUser").on("click",addNewClick);
 		$("#btnEditUser").on("click",editButtonClick);
+		$("#clear").on("click",clearButtonClick);
+		$("#save").on("click",saveButtonClick);
 		$(".basicPanel").decoratePanel();
 		changeFieldsStatus(true);
 		initButtons();
@@ -148,7 +151,14 @@ function UI_ManageUser() {
 		$("#userGrid").clearGridData();
 	};
 	
+	clearSearchFields = function() {
+		$("#searchUserName").val(""); 
+		$("#searchFirstName").val(""); 
+		$("#searchStatus").val(""); 
+	};
+	
 	addNewClick = function () {
+		UI_ManageUser.isEdit = false;
 		clearFields();
 		changeFieldsStatus(false);
 		$("#save").removeAttr("disabled");
@@ -156,14 +166,42 @@ function UI_ManageUser() {
 	};
 	
 	editButtonClick = function () {
+		UI_ManageUser.isEdit = false;
 		changeFieldsStatus(false);
 		$("#save").removeAttr("disabled");
 	};
 	
 	saveButtonClick = function() {
-		//ok
+		var postData = {
+				firstName:function(){return $("#firstName").val();},
+				title:function(){return $("#title").val();},
+				lastName:function(){return $("#lastName").val();},
+				status:function(){return $("#status").val();},
+				email:function(){return $("#email").val();},
+				role:function(){return $("#role").val();},
+				phoneNumber:function(){return $("#phoneNo").val();},
+				userName:function(){return $("#userName").val();},
+				password:function(){return $("#password").val();}
+		};
+		
+		var url = "addUser";
+		if(UI_ManageUser.isEdit){
+			url = "";
+		}
+		
+		$.ajax({ type: "GET", url: url, data: postData })
+		.done(function( msg ) {
+			    alert( "Data Saved: " );
+		});
 	};
 	
+	clearButtonClick = function() {
+		changeFieldsStatus(true);
+		clearFields();
+		initButtons();
+		clearGrid();
+		clearSearchFields();
+	}
 	
 }
 parent.UI_HomePage.showProgress();

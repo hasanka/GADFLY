@@ -139,7 +139,10 @@
 									<input type="password" id="passwordConfirm" name="passwordConfirm" class="v_mandatory" />
 								</td>
 								<td width="12%"><input type="hidden" id="hdnUserId"></td>
-								<td width="18%" align="right"><button id="save">Save </button></td>
+								<td width="18%" align="right">
+									
+									
+								</td>
 							</tr>
 							<tr>
 								<td width="12%"></td>
@@ -150,6 +153,13 @@
 								<td width="18%"></td>
 								<td width="12%"></td>
 								<td width="18%" align="right"></td>
+							</tr>
+						</table>
+						<table style="width: 100%;">
+							<tr>
+								<td align="right"><button id="clear">Clear </button>
+									<button id="save">Save </button>
+								</td>
 							</tr>
 						</table>
 					</form>

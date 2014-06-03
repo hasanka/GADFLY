@@ -35,6 +35,13 @@ public class UserController {
 		return model; 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/addUser",method=RequestMethod.GET)
+	public void addNewUser(@ModelAttribute UserDTO userDTO){
+		System.out.println(userDTO);
+	}
+	
+	
 	private List<UserDTO> findUsers(){
 		List<UserDTO> result = new ArrayList<UserDTO>();
 		for(int i=0 ; i<15;i++){
