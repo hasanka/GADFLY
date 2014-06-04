@@ -15,5 +15,18 @@
 	<classpathentry kind="src" path="/webAdmin"/>
 	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar"/>
 	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/com/couchbase/client/couchbase-client/1.4.0/couchbase-client-1.4.0.jar"/>
+	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/org/springframework/data/spring-data-couchbase/1.1.0.RELEASE/spring-data-couchbase-1.1.0.RELEASE.jar"/>
+	<classpathentry kind="src" path="/core"/>
+	<classpathentry kind="lib" path="/Users/HasankaMac/.m2/repository/org/springframework/data/spring-data-commons/1.8.0.RELEASE/spring-data-commons-1.8.0.RELEASE.jar" sourcepath="/Users/HasankaMac/.m2/repository/org/springframework/data/spring-data-commons/1.8.0.RELEASE/spring-data-commons-1.8.0.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework.data"/>
+			<attribute name="maven.artifactId" value="spring-data-commons"/>
+			<attribute name="maven.version" value="1.8.0.RELEASE"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

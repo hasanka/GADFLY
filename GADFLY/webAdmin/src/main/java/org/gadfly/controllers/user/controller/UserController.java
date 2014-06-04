@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.gadfly.controllers.user.dto.UserDTO;
+import org.gadfly.core.api.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user")
 public class UserController {
 
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value="/showView",method=RequestMethod.GET)
 	public ModelAndView showView(){
 		ModelAndView mv = new ModelAndView("/private/user/ui/user.jsp");
@@ -38,7 +43,11 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="/addUser",method=RequestMethod.GET)
 	public void addNewUser(@ModelAttribute UserDTO userDTO){
-		System.out.println(userDTO);
+		try {
+			userService.saveUser(userDTO.transformToUser());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

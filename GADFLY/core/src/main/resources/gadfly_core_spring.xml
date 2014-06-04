@@ -10,11 +10,11 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
  
+	<!-- service -->
+	<bean id="userService" class="org.gadfly.core.core.remoting.UserServiceImpl"/>
+ 
+ 
+ 	<!-- dao -->
+ 	<bean id="userDAO" class="org.gadfly.core.core.persistence.couchbase.UserCbDAOImpl"/>
  	
- 	<mvc:annotation-driven />
- 	 
-	<context:component-scan base-package="org.gadfly.controllers" />
- 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
- 
 </beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:couchbase="http://www.springframework.org/schema/data/couchbase"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/couchbase
+    http://www.springframework.org/schema/data/couchbase/spring-couchbase.xsd
+    http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+    <context:annotation-config />
+    
+    <couchbase:couchbase bucket="Test" password="passw0rd" host="127.0.0.1" />
+    
+    <couchbase:template client-ref="couchbase" />
+     
+</beans:beans>
