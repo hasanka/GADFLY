@@ -1,7 +1,10 @@
 package org.gadfly.core.core.remoting;
 
+import java.util.List;
+
 import org.gadfly.core.api.domain.User;
 import org.gadfly.core.api.service.UserService;
+import org.gadfly.core.api.to.UserDTO;
 import org.gadfly.core.core.persistence.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -18,5 +21,10 @@ public class UserServiceImpl implements UserService{
 	public void saveUser(User user) {
 		userDAO.saveUser(user);
 	}
-	
+
+	@Override
+	public List<User> searchUsers(UserDTO userDTO) {
+		return userDAO.searchUsers(userDTO);
+	}
+
 }

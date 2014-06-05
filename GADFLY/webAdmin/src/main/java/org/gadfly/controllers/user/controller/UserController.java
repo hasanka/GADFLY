@@ -3,8 +3,9 @@ package org.gadfly.controllers.user.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gadfly.controllers.user.dto.UserDTO;
+import org.gadfly.core.api.domain.User;
 import org.gadfly.core.api.service.UserService;
+import org.gadfly.core.api.to.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,7 +37,8 @@ public class UserController {
 	@RequestMapping(value="/searchUsers",method=RequestMethod.GET)
 	public ModelMap searchUsers(@ModelAttribute UserDTO userDTO){
 		ModelMap model = new ModelMap();
-		model.addAttribute("userList", findUsers());
+		List<User> result = userService.searchUsers(userDTO);
+		model.addAttribute("userList", findUsers( result ) );
 		return model; 
 	}
 	
@@ -51,27 +53,13 @@ public class UserController {
 	}
 	
 	
-	private List<UserDTO> findUsers(){
+	private List<UserDTO> findUsers( List<User> list){
 		List<UserDTO> result = new ArrayList<UserDTO>();
-		for(int i=0 ; i<15;i++){
-			UserDTO userDTO = new UserDTO();
-			userDTO.setUserID("userId"+i);
-			userDTO.setTitle("Mr");
-			userDTO.setUserName("UserName"+i);
-			userDTO.setFirstName("F"+i);
-			userDTO.setLastName("L"+i);
-			userDTO.setEmail("Tets@gmail"+i);
-			if(i<5){
-				userDTO.setStatus("ACT");
-				userDTO.setRole("Role One");
-			}else{
-				userDTO.setStatus("INA");
-				userDTO.setRole("Role Two");
+		if(list != null && list.size() > 0){
+			for (User user : list) {
+				UserDTO dto = new UserDTO(user);
+				result.add(dto);
 			}
-			userDTO.setPassword("password");
-			userDTO.setPhoneNumber("PhoneNumber"+i);	
-			userDTO.setPassword("password");
-			result.add(userDTO);
 		}
 		return result;
 	}

@@ -138,7 +138,9 @@
 									<div class="errormsg" id="v_mandatory_passwordConfirm">Password MisMatch</div>
 									<input type="password" id="passwordConfirm" name="passwordConfirm" class="v_mandatory" />
 								</td>
-								<td width="12%"><input type="hidden" id="hdnUserId"></td>
+								<td width="12%">
+									<input type="hidden" id="hdnUserId">
+								</td>
 								<td width="18%" align="right">
 									
 									
@@ -172,7 +174,7 @@
 	<script type="text/javascript" src="../../javascript/dglibs/dg.jquery.decorator.js"></script>
 	<script type="text/javascript" src="../../javascript/dglibs/dg.browsers.js"></script>
 	<script type="text/javascript" src="../../javascript/dglibs/dg.statusbar.js"></script>
-	<script type="text/javascript" src="../../javascript/jquery/jquery.alerts.js"></script>
+	<script type="text/javascript" src="../../javascript/jquery/jNotify.jquery.js"></script>
 	<script type="text/javascript" src="../../javascript/dglibs/dg.common.js"></script>
 	<script type="text/javascript" src="../../javascript/jquery/i18n/grid.locale-en.js"></script>
 	<script type="text/javascript" src="../../javascript/jquery/jquery.jqGrid.min.js"></script>

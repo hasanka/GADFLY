@@ -1,8 +1,10 @@
-package org.gadfly.controllers.user.dto;
+package org.gadfly.core.api.to;
 
 import java.io.Serializable;
 
 import org.gadfly.core.api.domain.User;
+
+
 /**
  * 
  * @author HasankaMac
@@ -23,6 +25,26 @@ public class UserDTO implements Serializable {
 	private String role;
 	private String phoneNumber;
 	private String password;
+	private long version;
+	
+	public UserDTO() {
+	
+	}
+	
+	public UserDTO( User user) {
+		 userID = user.getId();
+		 userName = user.getUserName();
+		 firstName = user.getFirstName();
+		 status = user.getStatus();
+		 email = user.getEmail();
+		 lastName = user.getLastName();
+		 title = user.getTitle();
+		 role = user.getRole();
+		 phoneNumber = user.getPhoneNumber();
+		 password = user.getPassword();
+	}
+	
+	
 	
 	public User transformToUser(){
 		User user = new User();
@@ -38,6 +60,7 @@ public class UserDTO implements Serializable {
 		user.setPassword(password);
 		return user;
 	}
+	
 	
 	@Override
 	public int hashCode() {
@@ -181,6 +204,14 @@ public class UserDTO implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 	
 }

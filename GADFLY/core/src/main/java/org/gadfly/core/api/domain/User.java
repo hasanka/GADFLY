@@ -3,6 +3,7 @@ package org.gadfly.core.api.domain;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 /**
  * 
@@ -33,6 +34,8 @@ public class User {
 	private String phoneNumber;
 	@Field
 	private String password;
+	@Version
+	private long version;
 	
 	public String getId() {
 		return id;
@@ -94,4 +97,11 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	public long getVersion() {
+		return version;
+	}
+	public void setVersion(long version) {
+		this.version = version;
+	}
+	
 }

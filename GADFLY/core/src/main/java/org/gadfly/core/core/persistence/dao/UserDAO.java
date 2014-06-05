@@ -1,6 +1,9 @@
 package org.gadfly.core.core.persistence.dao;
 
+import java.util.List;
+
 import org.gadfly.core.api.domain.User;
+import org.gadfly.core.api.to.UserDTO;
 
 /**
  * 
@@ -8,5 +11,18 @@ import org.gadfly.core.api.domain.User;
  *
  */
 public interface UserDAO {
-	void saveUser(User user);
+	
+	/**
+	 * 
+	 * @param user
+	 */
+	User saveUser(User user);
+	
+	/**
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	List<User> searchUsers(UserDTO dto);
+	
 }

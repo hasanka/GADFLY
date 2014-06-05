@@ -3,7 +3,6 @@
  ******************************************************************************/
 
 function UI_ManageUser() {
-	this.isEdit = null;
 	this.gridHTML = $("<table id='userGrid'></table>");
 	this.gridPagerHTML = $("<div id='userGridPager'></div>");
 	this.userGrid = null;
@@ -31,6 +30,7 @@ function UI_ManageUser() {
 		constarctGrid();
 		UI_ManageUser.userGrid = $("#userGrid").jqGrid(
 				{
+					url:"searchUsers",
 					datatype : "json",
 					height : 230,
 					autowidth : true,
@@ -45,7 +45,7 @@ function UI_ManageUser() {
 					             {name :'phoneNumber',index : 'phoneNumber',width : "10%",align : "center",sortable:true},
 					             {name :'role',index : 'role',width : "10%",align : "center",sortable:true},
 					             {name :'status',index : 'status',width : "10%",align : "center",sortable:true}	,
-					             {name :'password', hidden : true}, 
+					             {name :'password', hidden : true} 
 					          ],
 					imgpath : "",
 					pager : jQuery('#userGridPager'),
@@ -68,7 +68,7 @@ function UI_ManageUser() {
 						$("#userGrid").setGridParam({datatype:"local"});
 					}
 				});
-
+		
 	};
 	
 	constarctGrid = function() {
@@ -129,7 +129,7 @@ function UI_ManageUser() {
 		$("#userName").val(""); 
 		$("#password").val(""); 
 		$("#passwordConfirm").val(""); 
-		$("#hdnUserId").val("")
+		$("#hdnUserId").val("");
 	};
 	
 	gridRowClick = function (rowData) {
@@ -156,9 +156,8 @@ function UI_ManageUser() {
 		$("#searchFirstName").val(""); 
 		$("#searchStatus").val(""); 
 	};
-	
+		
 	addNewClick = function () {
-		UI_ManageUser.isEdit = false;
 		clearFields();
 		changeFieldsStatus(false);
 		$("#save").removeAttr("disabled");
@@ -166,7 +165,6 @@ function UI_ManageUser() {
 	};
 	
 	editButtonClick = function () {
-		UI_ManageUser.isEdit = false;
 		changeFieldsStatus(false);
 		$("#save").removeAttr("disabled");
 	};
@@ -185,14 +183,8 @@ function UI_ManageUser() {
 		};
 		
 		var url = "addUser";
-		if(UI_ManageUser.isEdit){
-			url = "";
-		}
-		
-		$.ajax({ type: "GET", url: url, data: postData })
-		.done(function( msg ) {
-			    alert( "Data Saved: " );
-		});
+		$.ajax({ type: "GET", url: url, data: postData ,success:callBackSaveUserSucess,error:callBackSaveUserError});
+
 	};
 	
 	clearButtonClick = function() {
@@ -201,7 +193,23 @@ function UI_ManageUser() {
 		initButtons();
 		clearGrid();
 		clearSearchFields();
-	}
+	};
+	
+	callBackSaveUserSucess = function(data, textStatus, jqXHR) {
+		jSuccess("Data saved successfuly.",{
+			autoHide:true,
+			ShowOverlay:false,
+			VerticalPosition:"top",
+			HorizontalPosition:"center",
+			LongTripInteger:10
+		});
+		searchBtnClick();
+	};
+	
+	
+	callBackSaveUserError = function(jqXHR, textStatus, errorThrown ) {
+		
+	};
 	
 }
 parent.UI_HomePage.showProgress();
