@@ -13,7 +13,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value> classpath:couchbase_spring_beans.xml 
 					 /WEB-INF/mvc-dispatcher-servlet.xml
- 					 /WEB-INF/spring-security.xml 
+ 					 classpath:spring-security.xml 
 					 classpath:gadfly_core_spring.xml 
 		</param-value>
 	</context-param> 

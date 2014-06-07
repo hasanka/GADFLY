@@ -73,6 +73,7 @@
   </dependencies>
   <modules>
   	<module>core</module>
+  	<module>auth</module>
     <module>webAdmin</module>
   </modules>
   <build>
