@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user")
 public class UserController {
 
+	
 	@Autowired
 	private UserService userService;
 	

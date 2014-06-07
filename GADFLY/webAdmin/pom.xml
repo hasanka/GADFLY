@@ -11,6 +11,12 @@
   <packaging>war</packaging>
   <name>webAdmin Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+   <properties>
+		<deploy.dir>/Applications/tomcat8</deploy.dir>
+		<war.name>webAdmin</war.name>
+   </properties>
+  
   <dependencies>
   
   	<dependency>
@@ -50,16 +56,33 @@
 		<version>1.9.13</version>
 	</dependency>
     
+    
   </dependencies>
   <build>
     <finalName>webAdmin</finalName>
     <plugins>
-	    <plugin>
+	     <plugin>
+	    	<artifactId>maven-clean-plugin</artifactId>
+		    <version>2.4.1</version>
+		    <configuration>
+		      <filesets>
+		        <fileset>
+		          <directory>${deploy.dir}/webapps</directory>
+		          <includes>
+		            <include>${war.name}.war</include>
+		            <include>${war.name}/**</include>
+		          </includes>
+		        </fileset>
+		      </filesets>
+		   	 </configuration>
+ 		 </plugin>
+ 		 
+ 		  <plugin>
 	        <groupId>org.apache.maven.plugins</groupId>
 	        <artifactId>maven-war-plugin</artifactId>
 	        <configuration>
-	            <warName>webAdmin</warName>
-	            <outputDirectory>/Applications/tomcat8/webapps/</outputDirectory>
+	            <warName>${war.name}</warName>
+	            <outputDirectory>${deploy.dir}/webapps</outputDirectory>
 	        </configuration>
 	    </plugin>
 	</plugins> 
