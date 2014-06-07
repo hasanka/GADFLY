@@ -30,9 +30,7 @@
 			<div class="logo-app"></div>
 			<div class="bar-app">
 				<div id="divLoggedInUser" class="fntBold topbarItems">
-					<label id="lblLoggedInUser">Welcome <s:property value="hasanka" /></label> | <a
-						href="logout" class="logout"
-						id="lblLogout">Logout</a>
+					<label id="lblLoggedInUser">Welcome <s:property value="hasanka" /></label> | <a href="javascript:formSubmit()" class="logout" id="lblLogout">Logout</a>
 				</div>
 			</div>
 			<div class="client-logo">
@@ -99,6 +97,16 @@
 			</table>
 		</div> -->
 	</div>
+	
+	<div>
+		<form action="../../j_spring_security_logout" method="post" id="logoutForm"></form>
+		<script>
+			function formSubmit() {
+				document.getElementById("logoutForm").submit();
+			}
+		</script>
+	</div>
+	
 	<!-- common javascript libs   -->
 	<script type="text/javascript" src="../../javascript/jquery/jquery.js"></script>
 	<script type="text/javascript" src="../../javascript/jquery/jquery.ui.js"></script>

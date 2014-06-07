@@ -32,4 +32,27 @@ $(document).ready(function() {
 		});
 	}); 
 	
+	clearField();
+	showError();
 });
+
+
+function showError() {
+	if (window.location.search.indexOf('error') > -1) {
+	    $("#errorMsg").show();
+	} else {
+		$("#errorMsg").hide();
+	}
+}
+
+function clearField() {
+	$("#password").val("");
+	$("#username").val("");
+}
+
+function getUrlVar(key){
+	var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+	return result && unescape(result[1]) || ""; 
+}
+
+

@@ -26,10 +26,10 @@
 </head>
 <body>
 
-	<!--<div class="notice">
+	<div class="notice" id="errorMsg">
 		<a href="" class="close">close</a>
 		<p class="warn">Whoops! We didn't recognise your username or password. Please try again.</p>
-	</div> -->
+	</div> 
 
 
 
@@ -38,23 +38,23 @@
 	<div class="container">
 		
 		<div class="form-bg">
-			<form action="controller/dashboard/showView">
+			<form action="j_spring_security_check" method="post">
 				<h2>Login</h2>
-				<p><input type="text" placeholder="Username"></p>
-				<p><input type="password" placeholder="Password"></p>
+				<p><input type="text" placeholder="Username" name="username" id="username"></p>
+				<p><input type="password" placeholder="Password" name="password" id="password"></p>
 				<label for="remember">
 				  <input type="checkbox" id="remember" value="remember" />
 				  <span>Remember me on this computer</span>
 				</label>
 				<button type="submit"></button>
-			<form>
+			</form>
 		</div>
 
 	
 		<p class="forgot">Forgot your password? <a href="">Click here to reset it.</a></p>
 
 
-	</div><!-- container -->
+	</div>
 
 	<!-- JS  -->
 	<script src="javascript/jquery/jquery.js"></script>
