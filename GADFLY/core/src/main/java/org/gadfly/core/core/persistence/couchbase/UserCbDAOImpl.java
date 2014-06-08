@@ -1,5 +1,6 @@
 package org.gadfly.core.core.persistence.couchbase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.gadfly.core.api.domain.User;
@@ -24,6 +25,8 @@ import com.couchbase.client.protocol.views.ViewRow;
  */
 public class UserCbDAOImpl implements UserDAO {
 
+	private static final String ANY = "\uefff";
+	
 	@Autowired
 	private CouchbaseTemplate couchbaseTemplate;
 	
@@ -45,11 +48,17 @@ public class UserCbDAOImpl implements UserDAO {
 			Query query = new Query();
 			query.setIncludeDocs(true);
 			query.setStale(Stale.FALSE);
-			return (List<User>)couchbaseTemplate.findByView("users", "searchUsers", query, User.class);
+			String userName = dto.getUserName();
+			String firstName = dto.getFirstName();
+			String status = dto.getStatus();
+			ComplexKey keyStart = ComplexKey.of(userName,firstName,status).forceArray(true);
+			ComplexKey keyEnd = ComplexKey.of(userName+ANY,firstName+ANY,status+ANY).forceArray(true);
+			query.setRangeStart(keyStart);
+			query.setRangeEnd(keyEnd);
+			return (List<User>) couchbaseTemplate.findByView("users", "searchUsers", query,User.class);
 		} catch (Exception e) {
 			throw new GadfyDaoException("Error in searching users", "DATA_RETRIVE_EXCEPTION",e);
 		}
-	
 	}
 
 	@Override
@@ -72,7 +81,5 @@ public class UserCbDAOImpl implements UserDAO {
 		
 	}
 
-	
-	
 }
 

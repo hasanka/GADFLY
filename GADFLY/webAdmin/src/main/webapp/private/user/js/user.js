@@ -32,6 +32,10 @@ function UI_ManageUser() {
 				{
 					url:"searchUsers",
 					datatype : "json",
+					postData : { "userName":function(){return $("#searchUserName").val();},
+								 "firstName":function(){ return $("#searchFirstName").val();},
+								 "status":function(){return $("#searchStatus").val();}
+							    },
 					height : 230,
 					autowidth : true,
 					colNames : [  'userId','Title','First Name','Last Name','User Name','Email','Phone Number','Role', 'Status','password' ],

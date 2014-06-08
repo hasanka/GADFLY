@@ -31,7 +31,7 @@
 						<td width="5%"><label for="First Name">First Name</label></td>
 						<td width="15%"><input type="text" id="searchFirstName" style="width: 50%;" /></td>
 						<td width="5%"><label for="Status">Status</label></td>
-						<td width="15%"><select id="searchStatus" name="searchStatus"> <option>---select---</option> <option value="Active">Active</option> <option value="Inactive">In-Active</option></select></td>
+						<td width="15%"><select id="searchStatus" name="searchStatus"> <option value="">---select---</option> <option value="ACT">Active</option> <option value="INA">In-Active</option></select></td>
 						<td width="40%" align="right"><button id="btnSearch" >Search</button></td>
 					</tr>
 				</table>
