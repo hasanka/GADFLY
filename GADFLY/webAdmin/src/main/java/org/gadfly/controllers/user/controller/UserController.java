@@ -6,6 +6,7 @@ import java.util.List;
 import org.gadfly.core.api.domain.User;
 import org.gadfly.core.api.service.UserService;
 import org.gadfly.core.api.to.UserDTO;
+import org.gadfly.core.core.exception.GadfyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+	
 	
 	@Autowired
 	private UserService userService;
@@ -38,19 +39,29 @@ public class UserController {
 	@RequestMapping(value="/searchUsers",method=RequestMethod.GET)
 	public ModelMap searchUsers(@ModelAttribute UserDTO userDTO){
 		ModelMap model = new ModelMap();
-		List<User> result = userService.searchUsers(userDTO);
-		model.addAttribute("userList", findUsers( result ) );
+		try {
+			List<User> result = userService.searchUsers(userDTO);
+			model.addAttribute("userList", findUsers( result ) );
+			model.addAttribute("sucess", true );
+		} catch (GadfyException ge) {
+			model.addAttribute("sucess", false );
+			model.addAttribute("error", ge.getMessage());
+		}
 		return model; 
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/addUser",method=RequestMethod.GET)
-	public void addNewUser(@ModelAttribute UserDTO userDTO){
+	public ModelMap addNewUser(@ModelAttribute UserDTO userDTO){
+		ModelMap model = new ModelMap();
 		try {
 			userService.saveUser(userDTO.transformToUser());
-		} catch (Exception e) {
-			e.printStackTrace();
+			model.addAttribute("sucess", true );
+		} catch (GadfyException ge) {
+			model.addAttribute("sucess", false );
+			model.addAttribute("error", ge.getMessage());
 		}
+		return model;
 	}
 	
 	

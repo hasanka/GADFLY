@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.gadfly.auth.api.service.UserAuthenticateService;
 import org.gadfly.core.api.to.UserDTO;
+import org.gadfly.core.core.exception.GadfyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,7 +14,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
-
+/**
+ * 
+ * @author HasankaMac
+ *
+ */
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
@@ -25,14 +30,18 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String userName = authentication.getName();
         String password = authentication.getCredentials().toString();
         UserDTO dto = getUserDto(userName, password);
-        if (userAuthenticateService.authenticateUser(dto)) {
-            List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
-            grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-            Authentication auth = new UsernamePasswordAuthenticationToken(userName, password, grantedAuths);
-            return auth;
-        } else {
-            return null;
-        }
+        try {
+			if (userAuthenticateService.authenticateUser(dto)) {
+			    List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
+			    grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
+			    Authentication auth = new UsernamePasswordAuthenticationToken(userName, password, grantedAuths);
+			    return auth;
+			} else {
+			    return null;
+			}
+		} catch (GadfyException ge) {
+			return null;
+		}
 	}
 
 	public boolean supports(Class<?> authentication) {
