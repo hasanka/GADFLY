@@ -46,6 +46,7 @@
 				  <input type="checkbox" id="remember" value="remember" />
 				  <span>Remember me on this computer</span>
 				</label>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<button type="submit"></button>
 			</form>
 		</div>
