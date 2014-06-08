@@ -5,6 +5,7 @@ import java.util.List;
 import org.gadfly.core.api.domain.User;
 import org.gadfly.core.api.to.UserDTO;
 import org.gadfly.core.core.persistence.dao.UserDAO;
+import org.gadfly.core.core.util.EncriptData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.couchbase.core.CouchbaseTemplate;
 
@@ -26,9 +27,9 @@ public class UserCbDAOImpl implements UserDAO {
 	
 	@Override
 	public User saveUser(User user) {
+		 user.setPassword(EncriptData.encriptString(user.getPassword()));
 		 couchbaseTemplate.save(user);
 		 return couchbaseTemplate.findById(user.getId(),User.class);
-		
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class UserCbDAOImpl implements UserDAO {
 		Query query = new Query();
 		query.setIncludeDocs(false);
 		query.setStale(Stale.FALSE);
-		ComplexKey key = ComplexKey.of(dto.getUserName(),dto.getPassword()).forceArray(true);
+		ComplexKey key = ComplexKey.of(dto.getUserName(), EncriptData.encriptString(dto.getPassword())).forceArray(true);
 		query.setKey(key);
 		ViewResponse responce = couchbaseTemplate.queryView("users", "authentcateUser", query);
 		for (ViewRow viewRow : responce) {
