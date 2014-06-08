@@ -30,7 +30,7 @@
 			<div class="logo-app"></div>
 			<div class="bar-app">
 				<div id="divLoggedInUser" class="fntBold topbarItems">
-					<label id="lblLoggedInUser">Welcome <s:property value="hasanka" /></label> | <a href="javascript:formSubmit()" class="logout" id="lblLogout">Logout</a>
+					<label id="lblLoggedInUser">Welcome : </label><label>${user}</label> | <a href="javascript:formSubmit()" class="logout" id="lblLogout">Logout</a>
 				</div>
 			</div>
 			<div class="client-logo">
