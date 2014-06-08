@@ -7,6 +7,8 @@ import org.gadfly.core.api.domain.User;
 import org.gadfly.core.api.service.UserService;
 import org.gadfly.core.api.to.UserDTO;
 import org.gadfly.core.core.exception.GadfyException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user")
 public class UserController {
 	
+	Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -40,12 +43,15 @@ public class UserController {
 	public ModelMap searchUsers(@ModelAttribute UserDTO userDTO){
 		ModelMap model = new ModelMap();
 		try {
+			logger.info("Saving user initialized");
 			List<User> result = userService.searchUsers(userDTO);
 			model.addAttribute("userList", findUsers( result ) );
 			model.addAttribute("sucess", true );
+			logger.info("Saving user ended");
 		} catch (GadfyException ge) {
 			model.addAttribute("sucess", false );
 			model.addAttribute("error", ge.getMessage());
+			logger.info("Saving user has error");
 		}
 		return model; 
 	}
