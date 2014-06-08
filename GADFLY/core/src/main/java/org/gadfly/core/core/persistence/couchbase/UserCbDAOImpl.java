@@ -8,7 +8,11 @@ import org.gadfly.core.core.persistence.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.couchbase.core.CouchbaseTemplate;
 
+import com.couchbase.client.protocol.views.ComplexKey;
 import com.couchbase.client.protocol.views.Query;
+import com.couchbase.client.protocol.views.Stale;
+import com.couchbase.client.protocol.views.ViewResponse;
+import com.couchbase.client.protocol.views.ViewRow;
 
 /**
  * 
@@ -29,7 +33,25 @@ public class UserCbDAOImpl implements UserDAO {
 
 	@Override
 	public List<User> searchUsers(UserDTO dto) {
-		return (List<User>)couchbaseTemplate.findByView("users", "searchUsers", new Query(), User.class);
+		Query query = new Query();
+		query.setIncludeDocs(true);
+		query.setStale(Stale.FALSE);
+		return (List<User>)couchbaseTemplate.findByView("users", "searchUsers", query, User.class);
+	}
+
+	@Override
+	public boolean authenticateUser(UserDTO dto) {
+		Query query = new Query();
+		query.setIncludeDocs(false);
+		query.setStale(Stale.FALSE);
+		ComplexKey key = ComplexKey.of(dto.getUserName(),dto.getPassword()).forceArray(true);
+		query.setKey(key);
+		ViewResponse responce = couchbaseTemplate.queryView("users", "authentcateUser", query);
+		for (ViewRow viewRow : responce) {
+			boolean result = Boolean.valueOf(viewRow.getValue());
+			return result;
+		}
+		return false;
 	}
 
 	

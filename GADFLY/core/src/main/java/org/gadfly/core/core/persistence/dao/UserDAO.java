@@ -25,4 +25,13 @@ public interface UserDAO {
 	 */
 	List<User> searchUsers(UserDTO dto);
 	
+	/**
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	boolean authenticateUser(UserDTO dto);
+	
+	
+	
 }
