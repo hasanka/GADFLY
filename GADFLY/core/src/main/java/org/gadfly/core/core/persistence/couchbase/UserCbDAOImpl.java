@@ -1,6 +1,5 @@
 package org.gadfly.core.core.persistence.couchbase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.gadfly.core.api.domain.User;
